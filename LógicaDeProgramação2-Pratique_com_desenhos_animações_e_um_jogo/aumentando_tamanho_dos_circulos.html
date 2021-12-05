@@ -1,0 +1,42 @@
+<canvas width = "650", height = "400" ></canvas>
+
+<script>
+
+    //Traz o canvas do mundo HTML
+    var tela = document.querySelector("canvas");
+    var pincel = tela.getContext("2d");
+
+    //Desenha um fundo cinza
+    pincel.fillStyle = "lightgrey";
+    pincel.fillRect(0, 30, 650, 400);
+
+    //Texto
+    pincel.fillStyle = "black";
+    pincel.font = "20px Georgia";
+    pincel.fillText("Pressione SHIFT para aumentar o tamanho do cículo temporariamente", 0, 15);
+
+    //Desenha círculos quando o mouse é pressionado, se pressionar shift + mouse aumenta o tamanho do círculo
+    function desenhaCirculo(mouseEvent) {
+
+        var x = mouseEvent.pageX - tela.offsetLeft;
+        var y = mouseEvent.pageY - tela.offsetTop;
+        var raio = 10;
+
+        if(mouseEvent.shiftKey) {
+
+            raio = raio + 20;
+
+        }
+
+        pincel.fillStyle = "orange";
+        pincel.beginPath();
+        pincel.arc(x, y, raio, 0, 2 * 3.14);
+        pincel.fill();
+        console.log("Posição do clique: " + x + ", " + y);
+        console.log(mouseEvent);
+
+    }
+
+    tela.onclick = desenhaCirculo;
+
+</script>

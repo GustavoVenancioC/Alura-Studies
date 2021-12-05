@@ -1,0 +1,63 @@
+<canvas width = "600", height = "400"></canvas>
+
+<script>
+
+    //Traz o canvas do mundo HTML
+    var tela = document.querySelector("canvas");
+    var pincel = tela.getContext("2d");
+
+    //Desenha um retângulo cinza
+    pincel.fillStyle = "lightgrey";
+    pincel.fillRect(0, 25, 600, 400);
+
+    //Escreve o texto
+    pincel.fillStyle = "black";
+    pincel.font = "20px Candara"
+    pincel.fillText("Aperte o botão direito do mouse para mudar a cor das bolas", 0, 13);
+
+
+    //Array de cores e váriavel auxiliar
+    var cores = ["blue", "red", "green"]; 
+    var indiceCorAtual = 0;
+
+    //Função que desenha círculos quando o mouse esquerdo é pressionado
+    function desenhaCirculo(mouseEvent) {
+
+        var x = mouseEvent.pageX - tela.offsetLeft;
+        var y = mouseEvent.pageY - tela.offsetTop;
+        
+        pincel.fillStyle = cores[indiceCorAtual];
+        pincel.beginPath();
+        pincel.arc(x, y, 10, 0, 2 * 3.14);
+        pincel.fill();
+
+        console.log("Posição do clique: " + x + ", " + y);
+
+    }
+
+    tela.onclick = desenhaCirculo;
+
+    //Função que troca a cor dos círculos quando o mouse direito é pressionado
+    function mudaCor() {
+            
+        var troca = true;
+
+        if(troca) {
+
+            indiceCorAtual++;
+                
+            if(indiceCorAtual >= cores.length) {
+
+                indiceCorAtual = 0;
+
+            }
+        
+        }
+        
+        return false; 
+    
+    }
+
+    tela.oncontextmenu = mudaCor;
+
+</script>

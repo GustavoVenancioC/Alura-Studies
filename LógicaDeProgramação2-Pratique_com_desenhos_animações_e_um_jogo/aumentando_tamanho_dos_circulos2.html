@@ -1,0 +1,45 @@
+<canvas width = "740", height = "400" ></canvas>
+
+<script>
+
+    //Traz o canvas(Quadro Branco) para o mundo javaScript
+    var tela = document.querySelector("canvas");
+    var pincel = tela.getContext("2d");
+
+    //Desenha um retângulo no fundo
+    pincel.fillStyle = "lightgrey";
+    pincel.fillRect(0, 30, 740, 400);
+
+    //Texto
+    pincel.fillStyle = "black";
+    pincel.font = "20px Georgia";
+    pincel.fillText("Aperte SHIFT + MOUSE1 para aumentar o tamanho do círculo permanentemente", 0, 15);
+
+    //Váriavel auxiliar
+    var raio = 10;
+
+    //Função que desenha círculo quando o mouse esquerdo é pressionado
+    function desenhaCirculo(mouseEvent) {
+
+        var x = mouseEvent.pageX - tela.offsetLeft;
+        var y = mouseEvent.pageY - tela.offsetTop;
+
+        //Se shift for pressionado com o mouse esquerdo o raio do círculo vai aumentando
+        if(mouseEvent.shiftKey) {
+
+            raio = raio + 10;
+
+        }
+
+        //Códigos que desenham o círculo
+        pincel.fillStyle = "navy";
+        pincel.beginPath();
+        pincel.arc(x, y, raio, 0, 2 * 3.14);
+        pincel.fill();
+        console.log("Posição do clique: " + x + ", " + y);
+
+    }
+
+    tela.onclick = desenhaCirculo;
+
+</script>

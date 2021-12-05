@@ -1,0 +1,53 @@
+<canvas width = "600", height = "400" ></canvas>
+
+<script>
+
+    //Traz a tela/quadro branco do HTML e cria um pincel
+    var tela = document.querySelector("canvas");
+    var pincel = tela.getContext("2d");
+
+    //Fundo
+    pincel.fillStyle = "lightgrey";
+    pincel.fillRect(0, 0, 600, 400);
+
+    //Função que desenha um círculo
+    function desenhaCirculo(x, y, raio) {
+
+        pincel.fillStyle = "mediumturquoise";
+        pincel.beginPath();
+        pincel.arc(x, y, raio, 0, 2 * Math.PI);
+        pincel.fill();
+    }
+
+    //Função que limpa a tela 
+    function limpaTela() {
+
+        pincel.clearRect(0, 0, 600, 400);
+    }
+
+    //Váriavel auxiliar
+    var x = 20;
+    var fatorCrescimento = 1;
+
+    //Função que atualiza a tela
+    function atualizaTela() {
+
+        limpaTela();
+        
+        //Faz o círculo voltar ao atingir o limite esquerdo ou direito da tela
+        if(x >= 600) {
+        
+            fatorCrescimento = - 1;
+        } else if(x <= 0) {
+
+            fatorCrescimento = 1;
+        }
+
+        desenhaCirculo(x, 20, 10);
+        x = x + fatorCrescimento;
+    }
+
+    //Função que repete um código de acordo com um intervalo
+    setInterval(atualizaTela, 5);
+
+</script>

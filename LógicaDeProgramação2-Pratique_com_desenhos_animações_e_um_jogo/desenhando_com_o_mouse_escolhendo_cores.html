@@ -1,0 +1,57 @@
+<canvas width = "600", height = "400" ></canvas>
+<br>
+Selecione uma cor <input type = "color" ></input>
+
+<script>
+
+    //Traz a tela/quadro branco e o input do HTML e cria um pincel 
+    var tela = document.querySelector("canvas");
+    var paleta = document.querySelector("input");
+    var pincel = tela.getContext("2d");
+
+    //Desenha um retângulo de fundo
+    pincel.fillStyle = "lightgrey";
+    pincel.fillRect(0, 30, 600, 400);
+
+    //Texto
+    pincel.fillStyle = "black";
+    pincel.font = "20px Georgia";
+    pincel.fillText("Pressione o botão esquerdo e movimente o mouse para desenhar", 0, 15);
+
+    //Funções e váriaveis auxiliares
+    function habilitaDesenhar() {
+
+        desenha = true;
+    }
+
+    function desabilitaDesenhar() {
+
+        desenha = false;
+    }
+
+    var desenha = false;
+
+    //Função que desenha círculos seguindo o ponteiro do mouse, só funciona se o mouse1 for pressionado
+    function desenhaCirculo(mouseEvent) {
+
+        if(desenha) {
+          
+            var x = mouseEvent.pageX - tela.offsetLeft;
+            var y = mouseEvent.pageY - tela.offsetTop;
+
+            pincel.fillStyle = paleta.value;
+            pincel.beginPath();
+            pincel.arc(x, y, 10, 0, 2 * 3.14);
+            pincel.fill();
+        }
+
+        console.log("Posição do clique:" + x + ", " + y);
+    }
+
+
+    tela.onmousemove = desenhaCirculo;
+
+    tela.onmousedown = habilitaDesenhar;
+    tela.onmouseup = desabilitaDesenhar;
+
+</script>

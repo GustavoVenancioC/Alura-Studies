@@ -1,0 +1,47 @@
+<canvas width = "600", height = "400" ></canvas>
+
+<script>
+
+    //Traz a tela/quadro branco do HTML e cria um pincel
+    var tela = document.querySelector("canvas");
+    var pincel = tela.getContext("2d");
+
+    //Desenha um retângulo de fundo
+    pincel.fillStyle = "lightgrey";
+    pincel.fillRect(0, 30, 600, 400);
+
+    //texto
+    pincel.fillStyle = "black";
+    pincel.font = "20px Georgia";
+    pincel.fillText("Tente acertar o alvo!!", 0, 15);
+
+    //Váriaveis auxiliares
+    var raio = 10;
+
+    //Função que desenha círculos 
+    function desenhaCirculo(x, y, raio, cor) {
+
+        pincel.fillStyle = cor;
+        pincel.beginPath();
+        pincel.arc(x, y, raio, 0, 2 * Math.PI);
+        pincel.fill();
+    }
+
+    desenhaCirculo(300, 200, raio + 20, "red");
+    desenhaCirculo(300, 200, raio + 10, "white");
+    desenhaCirculo(300, 200, raio, "red");
+
+    function dispara(mouseEvent) {
+
+        var x = mouseEvent.pageX - tela.offsetLeft;
+        var y = mouseEvent.pageY - tela.offsetTop;  
+
+        if((x < 300 + raio ) && (x > 300 - raio) && (y < 200 + raio) && (y > 200 - raio)) {
+            
+            alert("Você acertou!!");
+        }
+    }
+
+    tela.onclick = dispara;
+
+</script>

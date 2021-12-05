@@ -1,0 +1,71 @@
+<canvas width = "600", height = "400" ></canvas>
+
+<script>
+
+    //Traz a tela/quadro branco do HTML e cria um pincel
+    var tela = document.querySelector("canvas");
+    var pincel = tela.getContext("2d");
+
+    //Váriavel auxiliar
+    var raio = 10;
+    var xAleatorio = sorteiaPosicao(600);
+    var yAleatorio = sorteiaPosicao(400); 
+
+    //Função que desenha um círculo de acordo com x e y
+    function desenhaCirculo(x, y, raio, cor) {
+
+        pincel.fillStyle = cor;
+        pincel.beginPath();
+        pincel.arc(x, y, raio, 0, 2 * Math.PI)
+        pincel.fill();
+    }
+
+    //Função que desenha um alvo
+    function desenhaAlvo(x, y) {
+
+        desenhaCirculo(x, y, raio + 20, "red");
+        desenhaCirculo(x, y, raio + 10, "white");
+        desenhaCirculo(x, y, 10, "red");
+    }
+
+    //Função que limpa a tela/canvas
+    function limpaTela() {
+
+        pincel.clearRect(0, 0, 600, 400);
+    }
+
+    //Função que sorteia um número
+    function sorteiaPosicao(maximo) {
+
+        return Math.floor( Math.random() * maximo);
+    } 
+
+    //Função que atualiza a tela gerando uma nova posição para o alvo
+    function atualizaTela() {
+        
+        limpaTela();
+
+        xAleatorio = sorteiaPosicao(600);
+        yAleatorio = sorteiaPosicao(400); 
+
+        desenhaAlvo(xAleatorio, yAleatorio);
+    }
+
+    //Função para verificar se você acertou o alvo
+    function dispara(mouseEvent) {
+
+        var mouseX = mouseEvent.pageX - tela.offsetLeft;
+        var mouseY = mouseEvent.pageY - tela.offsetTop;
+
+        if((mouseX < xAleatorio + raio) && (mouseX > xAleatorio - raio) 
+        && (mouseY < yAleatorio + raio) && (mouseY > yAleatorio - raio)) {
+
+            alert("Você acertou!!");
+        }
+    }
+
+    setInterval(atualizaTela, 1000);
+
+    tela.onclick = dispara;
+
+</script>

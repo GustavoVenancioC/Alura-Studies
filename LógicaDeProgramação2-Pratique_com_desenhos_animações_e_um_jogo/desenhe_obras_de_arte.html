@@ -1,0 +1,117 @@
+<canvas width = "600", height = "400" ></canvas>
+
+<script>
+
+    //Traz a tela/quadro branco do HTML e cria um pincel
+    var tela = document.querySelector("canvas");
+    var pincel = tela.getContext("2d");
+
+    //Desenha um retângulo de fundo
+    pincel.fillStyle = "lightgrey";
+    pincel.fillRect(0, 0, 600, 400);
+
+    //Função que desenha um círculo na posição, tamanho e cor escolhida
+    function desenhaCirculo(x, y, raio, cor) {
+
+        pincel.fillStyle = cor;
+        pincel.beginPath();
+        pincel.arc(x, y, raio, 0, 2 * Math.PI);
+        pincel.fill();
+    }
+
+    //Função que desenha um círculo na posição, tamanho e cor escolhida
+    function desenhaQuadrado(x, y, tamanho, cor) {
+
+        pincel.fillStyle = cor;
+        pincel.fillRect(x, y, tamanho, tamanho);
+        pincel.fill();
+    }
+
+    //Função que desenha uma paleta de cores
+    function desenhaPaletaDeCores() {
+
+        desenhaQuadrado(xVermelho, yQuadrados, tamanhoQuadrados, "red");
+        desenhaQuadrado(xVerde, yQuadrados, tamanhoQuadrados, "green");
+        desenhaQuadrado(xAzul, yQuadrados, tamanhoQuadrados, "blue");
+    }
+
+    //Função que muda de cor de acordo com a cor de cada quadrado da paleta
+    function selecionaCor(mouseEvent) {
+
+        var mouseX = mouseEvent.pageX - tela.offsetLeft;
+        var mouseY = mouseEvent.pageY - tela.offsetTop;
+
+        if(mouseY > yQuadrados && mouseY < yQuadrados + tamanhoQuadrados) {
+
+            if(mouseX > xVermelho && mouseX < xVermelho + tamanhoQuadrados) {
+
+                corAtual = "red";
+            } else if (mouseX > xVerde && mouseX < xVerde + tamanhoQuadrados) {
+
+                corAtual = "green";
+            } else if (mouseX > xAzul && mouseX < xAzul + tamanhoQuadrados) {
+
+                corAtual = "blue";
+            }
+        }
+    }
+
+    //Se as coordenadas do mouse estiverem na linha da paleta ele não irá executar a função de podeDesenhar 
+    function podeDesenharNaArea(mouseX, mouseY) {
+
+        if((mouseX >= 0) && (mouseX < 3 * tamanhoQuadrados) 
+        && (mouseY >= yQuadrados) && (mouseY <= tamanhoQuadrados)) {
+
+            return false;
+        } else {
+
+            return true;
+        }
+    }
+
+    //Função que desenha os círculos de acordo com as coordenadas x e y do mouse
+    function lidaComMovimentoDoMouse(mouseEvent) {
+
+        var mouseX = mouseEvent.pageX - tela.offsetLeft;
+        var mouseY = mouseEvent.pageY - tela.offsetTop;
+
+        if(desenha && podeDesenharNaArea(mouseX, mouseY)) {
+        
+            desenhaCirculo(mouseX, mouseY, 5, corAtual);
+        } 
+    }
+
+    //Se o mouse esquerdo for pressionado habilita o desenho
+    function habilitaDesenhar() {
+
+        desenha = true;
+    }
+
+    //Se mouse esquerdo não for pressionado desabilita o desenho
+    function desabilitaDesenhar() {
+
+        desenha = false;
+    }
+
+    //Variaveis auxiliares
+    var desenha = false;
+    var corAtual = "blue";
+    var xVermelho = 0;
+    var xVerde = 50;
+    var xAzul = 100;
+    var yQuadrados = 0;
+    var tamanhoQuadrados = 50;
+
+    //Desenha os quadrados da paleta
+    desenhaPaletaDeCores();
+
+    //Códigos que desenham os círculos de acordo com o mouse
+    tela.onmousedown = habilitaDesenhar;
+    tela.onmouseup = desabilitaDesenhar;
+
+    tela.onmousemove = lidaComMovimentoDoMouse;
+
+    tela.onclick = selecionaCor;
+
+
+</script>

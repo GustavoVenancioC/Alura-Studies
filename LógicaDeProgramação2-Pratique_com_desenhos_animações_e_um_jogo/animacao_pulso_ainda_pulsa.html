@@ -1,0 +1,54 @@
+<canvas width = "600", height = "400" ></canvas>
+
+<script>
+
+    //Traz a tela/quadro branco do HTML e cria um pincel
+    var tela = document.querySelector("canvas");
+    var pincel = tela.getContext("2d");
+
+    //Cria um fundo com um retângulo
+    pincel.fillStyle = "lightgreen";
+    pincel.fillRect(0, 0, 600, 400);
+
+    //Função que desenha um círculo
+    function desenhaCirculo(x, y, raio, cor) {
+
+        pincel.fillStyle = cor;
+        pincel.beginPath();
+        pincel.arc(x, y, raio, 0, 2 * Math.PI);
+        pincel.fill();
+    } 
+
+    //Função que limpa a tela
+    function limpaTela() {
+
+        pincel.clearRect(0, 0, 600, 400);
+    }
+
+    //Váriavel auxiliar
+    var raio = 20;
+    var sentido = +1;
+
+    //Função que aumenta e reduz o raio
+    function animaRaio() {
+
+        //Reduz o raio
+        if(raio >= 30) {
+
+            sentido = -1;
+        }
+
+        //Aumenta o raio
+        if(raio <= 0) {
+
+            sentido = +1;
+        }
+
+        limpaTela();
+        desenhaCirculo(300, 200, raio, "red");
+        raio = raio + sentido;
+    }
+
+    setInterval(animaRaio, 20);
+
+</script>

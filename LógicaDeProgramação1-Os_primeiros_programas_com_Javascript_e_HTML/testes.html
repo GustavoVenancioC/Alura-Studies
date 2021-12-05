@@ -1,0 +1,24 @@
+<meta charset = "UTF-8">
+
+<input/>
+
+<button> Clique para mostrar </button>
+
+<script>
+
+var segredo = Math.round( Math.random() * 10);
+var input = document.querySelector("input");
+var button = document.querySelector("button");
+
+function verifica() {
+
+ alert(input.value);
+
+}
+
+button.onclick = verifica;
+
+
+
+
+</script>

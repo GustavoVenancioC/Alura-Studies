@@ -1,0 +1,29 @@
+<meta charset = "UTF-8">
+
+<script>
+
+    function pulaLinha() {
+
+        document.write("<br>");
+        document.write("<br>");
+
+    }
+
+    function mostra(frase) {
+
+        document.write(frase);
+        pulaLinha();
+
+    }
+
+    var contadores = 20;
+
+    while(contadores >= 0) {
+
+        mostra(contadores);
+        contadores = contadores - 1;
+
+    }
+
+    mostra("FIM");
+</script>
