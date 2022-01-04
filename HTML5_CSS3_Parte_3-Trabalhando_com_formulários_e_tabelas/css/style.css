@@ -90,9 +90,13 @@ footer {
     margin-top: 2px;
 }
 
-form {
+main {
     width: 940px;
-    margin: 40px auto;
+    margin: 0 auto;
+}
+
+form {
+    margin: 40px 0;
 }
 
 form label, form legend {
@@ -128,4 +132,20 @@ form label, form legend {
 .enviar-form:hover {
     background: #B8860B;
     transform: scale(1.07);
+}
+
+table {
+    margin: 20px 0 40px;
+}
+
+thead {
+    background: #DAA520;
+    color: #FFFFFF;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+td, th {
+    border: 1px solid #000000;
+    padding: 8px 15px;
 }
