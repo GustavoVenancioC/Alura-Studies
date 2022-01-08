@@ -252,4 +252,5 @@ td, th {
 
 .beneficios:hover .imagem-beneficios, .beneficios:hover .video-beneficios {
     opacity: 1;
+    box-shadow: 7px 7px 7px #000000;
 }
