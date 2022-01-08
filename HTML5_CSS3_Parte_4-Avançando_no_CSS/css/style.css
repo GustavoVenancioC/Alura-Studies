@@ -245,12 +245,30 @@ td, th {
     transition: 400ms;
 }
 
-.principal:hover .titulo-principal, .mapa:hover .titulo-principal, .beneficios:hover .titulo-principal {
+.principal:hover .titulo-principal, .mapa:hover .titulo-principal {
     opacity: 1;
     transform: scale(1.09);
 }
 
 .beneficios:hover .imagem-beneficios, .beneficios:hover .video-beneficios {
     opacity: 1;
-    box-shadow: 7px 7px 7px #000000;
+}
+
+/* Home responsivo */
+@media screen and (max-width: 480px) {
+    .caixa-cabecalho, .principal, .mapa-conteudo, .conteudo-beneficios, .video-beneficios {
+        width: auto;
+    }
+
+    .caixa-cabecalho h1 {
+        text-align: center;
+    }
+
+    .caixa-cabecalho nav {
+        position: static;
+    }
+
+    .lista-beneficios, .imagem-beneficios {
+        width: 100%;
+    }
 }
