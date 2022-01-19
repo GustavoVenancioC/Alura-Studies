@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/about.css">
     <link rel="stylesheet" href="css/speakers.css">
+    <link rel="stylesheet" href="css/form.css">
 </head>
 
 <body>
@@ -120,17 +121,23 @@
     </section>
     
     <section class="panel-form">
-        <h2>Seus dados</h2>
+        <div class="container">
+            <h2 class="title">Seus dados</h2>
 
-        <form>
-            <label for="Nome-sobrenome">Nome</label>
-            <input type="text" id="Nome-sobrenome" required>
-
-            <label for="Email">E-mail</label>
-            <input type="email" id="Email" required>
-
-            <button>Realizar inscrição</button>
-        </form>
+            <form class="form">
+                <div class="field">
+                    <label for="nome-sobrenome">Nome</label>
+                    <input class="field-input" type="text" id="nome-sobrenome" required>
+                </div>
+                <div class="field">
+                    <label for="email">E-mail</label>
+                    <input class="field-input" type="email" id="email" required>
+                </div>
+                <div class="button-place">
+                    <button class="button">Realizar inscrição</button>
+                </div>
+            </form>
+        </div>
     </section>
 </body>
 </html>
